@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Translit / Трансліт</title>
+        <style type="text/css">
+            body, textarea {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 20px;
+                line-height: 23px;
+                color: #333333;
+                background-color: #ffffff;
+            }
+            textarea {
+                display: block;
+                margin-bottom: 35px;
+                margin-top: 7px;
+                border: 1px solid hsl(212, 100%, 50%);
+                background:hsl(212, 100%, 85%);
+
+            }
+            textarea:focus-visible {
+                outline: 1px solid hsl(212, 100%, 65%);
+            }
+            textarea#txtLat {
+                border: 1px solid hsl(51, 100%, 30%);
+                background:hsl(51, 100%, 85%);
+            }
+            textarea#txtLat:focus-visible {
+                outline: 1px solid hsl(51, 100%, 40%);
+            }
+        </style>
+        <script type="text/javascript">
+            var translitMap = {
+                'а': 'a',
+                'б': 'b',
+                'в': 'v',
+                'г': 'ḣ',
+                'ґ': 'g',
+                'д': 'd',
+                'е': 'e',
+                'є': 'ė',
+                'ж': 'ż',
+                'з': 'z',
+                'и': 'y',
+                'і': 'i',
+                'ї': 'ï',
+                'й': 'j',
+                'к': 'k',
+                'л': 'l',
+                'м': 'm',
+                'н': 'n',
+                'о': 'o',
+                'п': 'p',
+                'р': 'r',
+                'с': 's',
+                'т': 't',
+                'у': 'u',
+                'ф': 'f',
+                'х': 'h',
+                'ц': 'c',
+                'ч': 'ċ',
+                'ш': 'ṡ',
+                'щ': 's̈',
+                'ь': '̣',
+                'ю': 'u̇',
+                'я': 'ȧ',
+                'А': 'A',
+                'Б': 'B',
+                'В': 'V',
+                'Г': 'Ḣ',
+                'Ґ': 'G',
+                'Д': 'D',
+                'Е': 'E',
+                'Є': 'Ė',
+                'Ж': 'Ż',
+                'З': 'Z',
+                'И': 'Y',
+                'І': 'I',
+                'Ї': 'Ï',
+                'Й': 'J',
+                'К': 'K',
+                'Л': 'L',
+                'М': 'M',
+                'Н': 'N',
+                'О': 'O',
+                'П': 'P',
+                'Р': 'R',
+                'С': 'S',
+                'Т': 'T',
+                'У': 'U',
+                'Ф': 'F',
+                'Х': 'H',
+                'Ц': 'C',
+                'Ч': 'Ċ',
+                'Ш': 'Ṡ',
+                'Щ': 'S̈',
+                'Ь': '̣',
+                'Ю': 'U̇',
+                'Я': 'Ȧ',
+            }
+            var txtUkr;
+            var txtLat;
+
+            function onTxtUkrChange() {
+                var charArray = txtUkr.value.split('')
+                txtLat.value = charArray.map(function(char) {
+                    return translitMap[char] || char;
+                }).join('');
+            }
+            function onLoad() {
+                txtUkr = document.getElementById("txtUkr");
+                txtLat = document.getElementById("txtLat");
+                txtUkr.focus();
+                txtUkr.oninput = onTxtUkrChange;
+                onTxtUkrChange();
+            }
+            document.addEventListener("DOMContentLoaded", onLoad);
+        </script>
+    </head>
+    <body>
+        <label for="txtUkr">Текст українською:</label>
+        <textarea id="txtUkr" rows="12" cols="80"></textarea>
+        <label for="txtLat">Tekst latynkou̇:</label>
+        <textarea id="txtLat" rows="12" cols="80"></textarea>
+    </body>
+</html>
